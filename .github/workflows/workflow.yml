@@ -20,7 +20,8 @@ jobs:
       - id: set-componentId
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            echo "::set output name=componentId::($ProcessDetails | jq '.[0].componentID')"
+            Id=($ProcessDetails | jq '.[0].componentID')
+            
       
   createPackage:
     needs: getProcessDetails
