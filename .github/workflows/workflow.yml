@@ -20,7 +20,8 @@ jobs:
       - id: setComponentId
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            echo $out = ${ProcessDetails} | jq '.[0].componentID'
+            componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
+            echo $componentId
     outputs:
      componentId: ${{steps.setComponentId.outputs.componentId}}
        
