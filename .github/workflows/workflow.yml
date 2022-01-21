@@ -20,14 +20,8 @@ jobs:
       - id: set-componentId
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            echo $ProcessDetails | jq '.[0].componentID'
-      - name: Show ComponentId
-        uses: actions/checkout@v2
-      - id: show-componentId
-        env: 
-           componentId: ${{steps.set-componentId.outputs.response}}
-        run: echo $componentId
-      
+            echo "::set-output name=compId::$($ProcessDetails | jq '.[0].componentID')"
+     
             
       
   createPackage:
