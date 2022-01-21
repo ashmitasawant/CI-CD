@@ -35,6 +35,6 @@ jobs:
      - name: SetVariables
        id: showVariable
        env:
-          JOB_CONTEXT: ${{ jobs.setComponentId.steps.id }}
-       run: echo "$JOB_CONTEXT"
+          compId: ${{ jobs.getProcessDetails.steps.setComponentId.outputs.compId }}
+       run: echo "$compId
         
