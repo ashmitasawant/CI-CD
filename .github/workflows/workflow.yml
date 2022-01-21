@@ -22,7 +22,8 @@ jobs:
             ProcessDetails=$(cat ./ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
             echo $componentId
-     
+    outputs:
+      output1: ${{ steps.setComponentId.outputs.componentId }}
             
   createPackage:
     needs: getProcessDetails
@@ -34,7 +35,5 @@ jobs:
     steps:
      - name: SetVariables
        id: showVariable
-       env:
-          compId: ${{ jobs.getProcessDetails.steps.setComponentId.outputs.compId }}
-       run: echo "$compId
+       run: echo "${{needs.getProcessDetails.outputs.output1}}
         
