@@ -22,15 +22,6 @@ jobs:
             ProcessDetails=$(cat ./ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
             echo $componentId
-    outputs:
-     componentId: ${{steps.setComponentId.outputs.componentId}}
-       
-  showCompId:
-   needs: getProcessDetails
-   runs-on: ubuntu-latest
-   steps:
-     - name: showCompId
-       run: echo ${{needs.getProcessDetails.outputs.componentId}}
      
             
   createPackage:
@@ -46,19 +37,8 @@ jobs:
        
     steps:
      - name: SetVariables
-       run: echo "The API key is:${{env.username}}"
-    
-     - name: AtomQuery
-       id: myRequest
-       uses: fjogeleit/http-request-action@master
-       with:
-        url: 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/PackagedComponent'
-        method: 'POST'
-        contentType: 'application/json'
-        data: '{"QueryFilter" : {"expression" :{"argument" : ["ATOM"], "operator" : "EQUALS", "property" : "type"}}}'
-        username: ${{env.BOOMI_USERNAME}}
-        password: ${{env.BOOMI_PASSWORD}}
-        
-     - name: Show Response
-       run: echo ${{ steps.myRequest.outputs.response }}
+       run: |
+            echo "The API key is:${{env.username}}"
+            echo "ComponentId is" ${{steps.setComponentId.componentId}}
+  
         
