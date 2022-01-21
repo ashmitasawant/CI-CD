@@ -34,10 +34,7 @@ jobs:
     steps:
      - name: SetVariables
        id: showVariable
-       env: 
-           CompId: ${{jobs.setComponentId.outputs.CompId}}
-       run: |
-            echo "The API key is:${{env.BOOMI_USERNAME}}"
-            echo "ComponentId is" ${{steps.showVariable.env.CompId}}
-  
+       env:
+          JOB_CONTEXT: ${{ jobs.setComponentId.steps.id }}
+       run: echo "$JOB_CONTEXT"
         
