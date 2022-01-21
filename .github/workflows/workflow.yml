@@ -20,7 +20,7 @@ jobs:
       - id: set-componentId
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            Id=($ProcessDetails | jq '.[0].componentID')
+            Id=$($ProcessDetails | jq '.[0].componentID')
             
       
   createPackage:
