@@ -20,6 +20,6 @@ jobs:
       - id: set-matrix
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            echo $ProcessDetails | jq '.[].componentID'
+            echo $ProcessDetails | jq '.[0].componentID'
 
         
