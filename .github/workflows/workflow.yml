@@ -17,11 +17,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get ComponentId
         uses: actions/checkout@v2
-      - id: set-matrix
+      - id: set-componentId
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            ComponentId= $ProcessDetails | jq '.[0].componentID' 
-            echo $ComponentId
+            echo "::set output name=componentId::$ProcessDetails | jq '.[0].componentID'"
+      
   createPackage:
     needs: getProcessDetails
     runs-on: ubuntu-latest
