@@ -33,8 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: SetVariables
+       id: showVariable
+       env: 
+           CompId: ${{steps.setComponentId.outputs.CompId}}
        run: |
             echo "The API key is:${{env.BOOMI_USERNAME}}"
-            echo "ComponentId is" ${{steps.setComponentId.outputs.componentId}}
+            echo "ComponentId is" ${{steps.showVariable.env.CompId}}
   
         
