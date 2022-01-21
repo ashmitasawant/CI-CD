@@ -20,8 +20,8 @@ jobs:
       - id: set-matrix
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            echo $ProcessDetails | jq '.[0].componentID' < $componentID
-    
+            ComponentId= $ProcessDetails | jq '.[0].componentID' 
+            echo $ComponentId
   createPackage:
     needs: getProcessDetails
     runs-on: ubuntu-latest
