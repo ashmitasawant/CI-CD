@@ -26,15 +26,11 @@ jobs:
             
   createPackage:
     needs: getProcessDetails
-    runs-on: ubuntu-latest
-
-    
     environment: Dev
     env: 
       BOOMI_USERNAME: ${{ secrets.BOOMI_USERNAME }}
       BOOMI_PASSWORD: ${{ secrets.BOOMI_PASSWORD }}
-  
-       
+    runs-on: ubuntu-latest
     steps:
      - name: SetVariables
        run: |
