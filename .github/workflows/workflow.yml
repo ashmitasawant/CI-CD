@@ -20,7 +20,7 @@ jobs:
       - id: set-matrix
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
-            ComponentId=$($ProcessDetails | jq '.[0].componentID')
+            echo $ProcessDetails | jq '.[0].componentID') << $componentID
     
   createPackage:
     needs: getProcessDetails
