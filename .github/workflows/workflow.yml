@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.setComponentId.outputs.cID }}
-      output2: ${{ steps.setComponentId.outputs.API_Response }}
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,6 +35,8 @@ jobs:
       BOOMI_PASSWORD: ${{ secrets.BOOMI_PASSWORD }}
      
     runs-on: ubuntu-latest
+    outputs:
+      output2: ${{ steps.response.outputs.API_Response }}
     needs: getProcessDetails
     steps:
      - name: SetVariables
@@ -53,7 +55,8 @@ jobs:
         password: ${{env.BOOMI_PASSWORD}}
         
      - name: Show Response
+       id: response
        run: |
            echo "::set-output name=API_Response::${{ steps.packageCreation.outputs.response }}"
-           echo  ${{needs.getProcessDetails.outputs.output2}}
+           echo  ${{outputs.output2}}
           
