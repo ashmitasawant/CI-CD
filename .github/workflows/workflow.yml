@@ -40,8 +40,8 @@ jobs:
      - name: SetVariables
        id: showVariable
        run:   echo ${{needs.getProcessDetails.outputs.output1}}
-     - name: AtomQuery
-       id: myRequest
+     - name: Package Creation
+       id: packageCreation
        uses: fjogeleit/http-request-action@master
        with:
         url: 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/PackagedComponent'
@@ -54,6 +54,6 @@ jobs:
         
      - name: Show Response
        run: |
-           echo "::set-output name=API_Response::${{ steps.myRequest.outputs.response }}"
-           echo $API_Response | jq '.[].packageId'
+           echo "::set-output name=API_Response::${{ steps.packageCreation.outputs.response }}"
+           packageID=$(echo ${API_Response} | jq '.[].packageId')
         
