@@ -58,5 +58,5 @@ jobs:
        id: response
        run: |
            echo "::set-output name=API_Response::${{ steps.packageCreation.outputs.response }}"
-           echo  ${{outputs.output2}}
+           echo  ${{steps.response.outputs.output2}}
           
