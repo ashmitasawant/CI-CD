@@ -41,7 +41,7 @@ jobs:
     steps:
      - name: SetVariables
        id: showVariable
-       run:   echo ${{needs.getProcessDetails.outputs.output1}}
+       run:   echo ${{needs.getProcessIds.outputs.output1}}
      - name: Package Creation
        id: packageCreation
        uses: fjogeleit/http-request-action@master
@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.43", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.43", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
