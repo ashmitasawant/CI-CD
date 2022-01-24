@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.44", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.45", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -67,11 +67,9 @@ jobs:
       steps:
         - name: fetchPackageId
           id: packageId
-          run: echo ${{needs.createPackage.outputs.output2}}
-          
-        - name: Archive code coverage results
-          uses: actions/upload-artifact@v2
-          with:
-            name: code-coverage-report
+        - uses: actions/checkout@v2
+          with: 
             path: ./PackageIds.txt
-          
+        - run: echo ${{needs.createPackage.outputs.output2}}
+       
+   
