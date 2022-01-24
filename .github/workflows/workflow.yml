@@ -12,7 +12,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.setComponentId.outputs.cID }}
+      output1: ${{ steps.setComponentId.outputs.componentID }}
 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -24,7 +24,7 @@ jobs:
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
-            echo "::set-output name=cID::$componentId"
+            echo "::set-output name=componentID::$componentId"
   
             
   createPackage:
@@ -36,7 +36,7 @@ jobs:
      
     runs-on: ubuntu-latest
     outputs:
-      output2: ${{ steps.response.outputs.API_Response }}
+      output2: ${{ steps.response.outputs.packageId }}
     needs: getProcessDetails
     steps:
      - name: SetVariables
@@ -58,7 +58,13 @@ jobs:
        id: response
        run: |
             packageID=$(echo ${{ toJSON(steps.packageCreation.outputs.response) }} | jq ".packageId")
-            echo $packageID
-          
-            
+            echo "::set-output name=packageID::$packagetId"
+        
+  pushPackageIds:
+      runs-on: ubuntu-latest    
+      needs: createPackage
+      steps:
+        - name: fetchPackageId
+          id: packageId
+          run: echo ${{needs.createPackage.outputs.output2}}
           
