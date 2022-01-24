@@ -36,7 +36,7 @@ jobs:
      
     runs-on: ubuntu-latest
     outputs:
-      output2: ${{ steps.response.outputs.packageId }}
+      output2: ${{ steps.response.outputs.packageID }}
     needs: getProcessDetails
     steps:
      - name: SetVariables
@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.39", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.40", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
