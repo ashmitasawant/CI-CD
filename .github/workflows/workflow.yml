@@ -21,7 +21,7 @@ jobs:
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
-            echo $componentId
+            echo "::set-output name=cID:$componentId"
     outputs:
       cID: ${{ steps.setComponentId.outputs.cID }}
 
@@ -32,7 +32,7 @@ jobs:
     env: 
       BOOMI_USERNAME: ${{ secrets.BOOMI_USERNAME }}
       BOOMI_PASSWORD: ${{ secrets.BOOMI_PASSWORD }}
-  
+     
     runs-on: ubuntu-latest
     steps:
      - name: SetVariables
