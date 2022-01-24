@@ -48,13 +48,14 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.15", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.16", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
      - name: Show Response
        run: |
             Response=$(echo ${{ steps.myRequest.outputs.response }})
-            echo toJSON($Response)
+            echo $Response
+            toJSON($Response)
            
         
