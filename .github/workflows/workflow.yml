@@ -52,5 +52,8 @@ jobs:
         password: ${{env.BOOMI_PASSWORD}}
         
      - name: Show Response
-       run: echo ${{ steps.myRequest.outputs.response }}
+       run: |
+            Response=$(echo ${{ steps.myRequest.outputs.response }})
+            PackageID=(${Response}| jq '.[0].packageId')
+            echo $PackageID
         
