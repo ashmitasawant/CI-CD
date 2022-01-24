@@ -39,4 +39,17 @@ jobs:
      - name: SetVariables
        id: showVariable
        run:   echo ${{needs.getProcessDetails.outputs.output1}}
+     - name: AtomQuery
+       id: myRequest
+       uses: fjogeleit/http-request-action@master
+       with:
+        url: 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/PackagedComponent'
+        method: 'POST'
+        contentType: 'application/json'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.0", "notes":"Package for deployment" }'
+        username: ${{env.BOOMI_USERNAME}}
+        password: ${{env.BOOMI_PASSWORD}}
+        
+     - name: Show Response
+       run: echo ${{ steps.myRequest.outputs.response }}
         
