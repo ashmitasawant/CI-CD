@@ -54,8 +54,6 @@ jobs:
         
      - name: Show Response
        run: |
-            Response=$(echo ${{ steps.myRequest.outputs.response }})
-            echo $Response
-            toJSON($Response)
-           
+           echo "::set-output name=API_Response::${{ steps.myRequest.outputs.response }}"
+           echo $API_Response | jq '.[].packageId'
         
