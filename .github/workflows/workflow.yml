@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.setComponentId.outputs.cID }}
+      output2: ${{ steps.setComponentId.outputs.packageID }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -54,6 +55,6 @@ jobs:
      - name: Show Response
        run: |
             Response=$(echo ${{ steps.myRequest.outputs.response }})
-           
-            echo $Response
+            packageId=$(echo  ${Response} | jq '.[].packageId')
+            echo "::set-output name=packageID::$packageId"
         
