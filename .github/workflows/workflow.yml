@@ -57,6 +57,5 @@ jobs:
      - name: Show Response
        id: response
        run: |
-           $output = '${{ steps.packageCreation.outputs.response }}' | ConvertTo-Json
-           echo  $($output.packageId)
+            echo ${{ steps.packageCreation.outputs.response.packageId}}
           
