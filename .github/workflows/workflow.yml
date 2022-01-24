@@ -22,6 +22,7 @@ jobs:
             ProcessDetails=$(cat ./ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
             echo "::set-output name=cID:$componentId"
+            echo $cID
     outputs:
       cID: ${{ steps.setComponentId.outputs.cID }}
 
