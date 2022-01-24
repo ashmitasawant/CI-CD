@@ -31,9 +31,10 @@ jobs:
     env: 
       BOOMI_USERNAME: ${{ secrets.BOOMI_USERNAME }}
       BOOMI_PASSWORD: ${{ secrets.BOOMI_PASSWORD }}
+      compId: ${{needs.getProcessDetails.outputs.output1}}
     runs-on: ubuntu-latest
     steps:
      - name: SetVariables
        id: showVariable
-       run: echo ${{needs.getProcessDetails.outputs.output1}}
+       run: echo ${{env.compId}}
         
