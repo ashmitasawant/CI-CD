@@ -46,7 +46,7 @@ jobs:
         url: 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/PackagedComponent'
         method: 'POST'
         contentType: 'application/json'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.0", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.2", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
