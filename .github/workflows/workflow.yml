@@ -69,3 +69,9 @@ jobs:
           id: packageId
           run: echo ${{needs.createPackage.outputs.output2}}
           
+        - name: Archive code coverage results
+          uses: actions/upload-artifact@v2
+          with:
+            name: code-coverage-report
+            path: ./PackageIds.txt
+          
