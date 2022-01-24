@@ -23,7 +23,7 @@ jobs:
         run: |
             ProcessDetails=$(cat ./ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
-            echo "::set-output name=cID:$componentId"
+            echo "::set-output name=cID::$componentId"
   
             
   createPackage:
