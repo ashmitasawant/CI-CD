@@ -50,14 +50,15 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.37", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.38", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
      - name: Show Response
        id: response
        run: |
-            echo ${{ toJSON(steps.packageCreation.outputs.response) }} | jq "."
+            packageID=$(echo ${{ toJSON(steps.packageCreation.outputs.response) }} | jq ".packageId")
+            echo $packageID
           
             
           
