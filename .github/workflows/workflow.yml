@@ -50,13 +50,13 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.19", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.20", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
      - name: Show Response
        id: response
        run: |
-           echo "::set-output name=API_Response::${{ steps.packageCreation.outputs.response }}"
-           echo  ${{steps.response.outputs.output2}}
+           $output = '${{ steps.packageCreation.outputs.response }}' | ConvertFrom-Json
+           echo  $($output.packageId)
           
