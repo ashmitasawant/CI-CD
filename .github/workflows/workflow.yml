@@ -35,5 +35,5 @@ jobs:
     steps:
      - name: SetVariables
        id: showVariable
-       run: echo "${{needs.getProcessDetails.outputs.output1}}
+       run: echo ${{needs.getProcessDetails.outputs.output1}}
         
