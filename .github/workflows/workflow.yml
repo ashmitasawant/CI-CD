@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.20", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.28", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
