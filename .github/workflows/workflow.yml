@@ -36,7 +36,7 @@ jobs:
      
     runs-on: ubuntu-latest
     outputs:
-      output2: ${{ steps.response.outputs.packageID }}
+      output2: ${{ steps.response.outputs.packageId }}
     needs: getProcessDetails
     steps:
      - name: SetVariables
@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.40", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessDetails.outputs.output1}},"packageVersion":"1.41", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -58,7 +58,7 @@ jobs:
        id: response
        run: |
             packageID=$(echo ${{ toJSON(steps.packageCreation.outputs.response) }} | jq ".packageId")
-            echo "::set-output name=packageID::$packagetId"
+            echo "::set-output name=packageId::$packagetID"
         
   pushPackageIds:
       runs-on: ubuntu-latest    
