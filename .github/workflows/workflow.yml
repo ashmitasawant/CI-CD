@@ -67,6 +67,6 @@ jobs:
       steps:
         - name: fetchPackageId
           id: packageId
-        - run: echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
+          run: echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
        
    
