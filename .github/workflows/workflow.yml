@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.45", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.46", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -70,6 +70,6 @@ jobs:
         - uses: actions/checkout@v2
           with: 
             path: ./PackageIds.txt
-        - run: echo ${{needs.createPackage.outputs.output2}}
+        - run: echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
        
    
