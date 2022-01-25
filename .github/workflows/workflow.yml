@@ -67,9 +67,6 @@ jobs:
       steps:
         - name: fetchPackageId
           id: packageId
-        - uses: actions/checkout@v2
-          with: 
-            path: ./PackageIds.txt
         - run: echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
        
    
