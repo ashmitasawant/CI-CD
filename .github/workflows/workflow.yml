@@ -51,7 +51,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.50", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.51", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -70,6 +70,7 @@ jobs:
       runs-on: ubuntu-latest    
       needs: createPackage
       steps:
+        - uses: actions/checkout@v2
         - name: fetchPackageId
           id: packageId
           run: |
