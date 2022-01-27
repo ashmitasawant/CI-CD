@@ -51,7 +51,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.48", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.49", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -72,7 +72,19 @@ jobs:
       steps:
         - name: fetchPackageId
           id: packageId
-          run: echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
+          run: |
+               echo ${{needs.createPackage.outputs.output2}} 
+               ${{needs.createPackage.outputs.output2}} > PackageIds.txt
+               git config user.name ashmitasawant
+               git config user.email ashmitasawant3@gmail.com
+               git add .
+               git commit -m "Published Changes"
+               git push
+       
+       
+       
+       
+       
         - name: Package Deploy
           id: packageDeploy
           uses: fjogeleit/http-request-action@master
@@ -88,6 +100,6 @@ jobs:
         - name: Show Response
           id: response
           run: |
-            response=$(echo ${{ toJSON(steps.packageDeploy.outputs.response) }}
+            response=$(echo ${{ toJSON(steps.packageDeploy.outputs.response) }})
             echo $response
    
