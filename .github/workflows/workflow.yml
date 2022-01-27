@@ -50,7 +50,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.46", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.47", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -68,5 +68,21 @@ jobs:
         - name: fetchPackageId
           id: packageId
           run: echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
-       
+        - name: Package Deploy
+          id: packageDeploy
+          uses: fjogeleit/http-request-action@master
+          with:
+           url: 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/DeployedPackage'
+           method: 'POST'
+           contentType: 'application/json'
+           customHeaders: '{"accept": "application/json"}'
+           data: '{"environmentId": "b3af1cf6-f33c-4539-bac5-e69073703311","packageId": ${{needs.createPackage.outputs.output2}}}'
+           username: ${{env.BOOMI_USERNAME}}
+           password: ${{env.BOOMI_PASSWORD}}
+           
+        - name: Show Response
+          id: response
+          run: |
+            response=$(echo ${{ toJSON(steps.packageDeploy.outputs.response) }}
+            echo $response
    
