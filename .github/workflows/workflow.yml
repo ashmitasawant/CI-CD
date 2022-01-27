@@ -51,7 +51,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.49", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.50", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -74,7 +74,7 @@ jobs:
           id: packageId
           run: |
                echo ${{needs.createPackage.outputs.output2}} 
-               ${{needs.createPackage.outputs.output2}} > PackageIds.txt
+               echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
                git config user.name ashmitasawant
                git config user.email ashmitasawant3@gmail.com
                git add .
