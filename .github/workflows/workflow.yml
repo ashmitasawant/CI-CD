@@ -43,6 +43,7 @@ jobs:
      - name: SetVariables
        id: showVariable
        run:   echo ${{needs.getProcessIds.outputs.output1}}
+       
      - name: Package Creation
        id: packageCreation
        uses: fjogeleit/http-request-action@master
@@ -51,7 +52,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.52", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"1.53", "notes":"Package for deployment" }'
         username: ${{env.BOOMI_USERNAME}}
         password: ${{env.BOOMI_PASSWORD}}
         
@@ -63,26 +64,27 @@ jobs:
             
         
   pushPackageIds:
-      environment: Dev
-      env: 
-        BOOMI_USERNAME: ${{ secrets.BOOMI_USERNAME }}
-        BOOMI_PASSWORD: ${{ secrets.BOOMI_PASSWORD }}
+
       runs-on: ubuntu-latest    
       needs: createPackage
       steps:
         - uses: actions/checkout@v2
-        - name: fetchPackageId
+        - name: pushPackageIds
           id: packageId
           run: |
                echo ${{needs.createPackage.outputs.output2}} 
-               echo ${{needs.createPackage.outputs.output2}} > PackageIds.txt
+               echo ${{needs.createPackage.outputs.output2}} >> PackageIds.txt
                git config user.name ashmitasawant
                git config user.email ashmitasawant3@gmail.com
                git add .
                git commit -m "Published Changes"
                git push
        
-  deployPackage:     
+  deployPackage: 
+   environment: Dev
+   env: 
+        BOOMI_USERNAME: ${{ secrets.BOOMI_USERNAME }}
+        BOOMI_PASSWORD: ${{ secrets.BOOMI_PASSWORD }}
    runs-on: ubuntu-latest    
    needs: createPackage    
    steps:     
