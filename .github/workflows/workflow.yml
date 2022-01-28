@@ -48,7 +48,7 @@ jobs:
        id: packageCreation
        uses: fjogeleit/http-request-action@master
        with:
-        url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7.YG1FA4/PackagedComponent'
+        url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
@@ -92,7 +92,7 @@ jobs:
        id: packageDeploy
        uses: fjogeleit/http-request-action@master
        with:
-         url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7.YG1FA4/DeployedPackage'
+         url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/DeployedPackage'
          method: 'POST'
          contentType: 'application/json'
          customHeaders: '{"accept": "application/json"}'
