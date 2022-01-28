@@ -52,7 +52,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.06", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.07", "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
@@ -124,8 +124,8 @@ jobs:
             --url 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/' \
             --data '    {
                           "nam":"Ashmita",
-                          "age":18,
-                          "role":"Software Engineer"
+                          "ag":18,
+                          "rol":"Software Engineer"
                          }'`
             if [ $CODE=="200" ] 
             then
