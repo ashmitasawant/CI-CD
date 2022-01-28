@@ -1,8 +1,8 @@
 [
         {
-		"processName": "SubmissionTest",
-		"componentID": "0a558e5f-69f2-460b-95e3-fe5ba308b1e7",
-		"evnID": "b3af1cf6-f33c-4539-bac5-e69073703311"
+		"processName": "TestWS",
+		"componentID": "bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5",
+		"evnID": "5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259"
 	},
 	{
 		"processName": "BindTest",
