@@ -52,7 +52,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.07", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.08", "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
