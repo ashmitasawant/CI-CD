@@ -52,7 +52,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.03", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.04", "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
@@ -124,7 +124,7 @@ jobs:
          contentType: 'application/json'
          customHeaders: '{"accept": "application/json"}'
          data: ' {"name":"Ashmita", "age":18,"role":"Software Engineer"}'
-         username: ${{env.APIHIT_USERNAME}}
+         username: ${{env.APIHITUSERNAME}}
          password: ${{env.APIHIT_PASSWORD}}
          ignoreStatusCodes: '401,403,404' 
     
