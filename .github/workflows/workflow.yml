@@ -124,7 +124,7 @@ jobs:
          contentType: 'application/json'
          customHeaders: '{"accept": "application/json"}'
          data: ' {"name":"Ashmita", "age":18,"role":"Software Engineer"}'
-         username: ${{env.APIHITUSERNAME}}
+         username: ${{env.APIHIT_USERNAME}}
          password: ${{env.APIHIT_PASSWORD}}
-         ignoreStatusCodes: '401,403,404' 
+         
     
