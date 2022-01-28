@@ -127,4 +127,8 @@ jobs:
          username: ${{env.APIHIT_USERNAME}}
          password: ${{env.APIHIT_PASSWORD}}
            
-     
+     - name: Show Response
+       id: response
+       run: |
+            response=$(echo ${{ toJSON(steps.packageDeploy.outputs.response.status) }})
+            echo $response
