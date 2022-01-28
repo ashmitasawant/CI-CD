@@ -110,8 +110,8 @@ jobs:
   processExecution:
    environment: Dev
    env: 
-        MY_USERNAME: ${{ secrets.MY_USERNAME }}
-        MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+        APIHIT_USERNAME: ${{ secrets.APIHIT_USERNAME }}
+        APIHIT_PASSWORD: ${{ secrets.APIHIT_PASSWORD }}
    runs-on: ubuntu-latest    
    needs: deployPackage   
    steps:     
@@ -124,8 +124,8 @@ jobs:
          contentType: 'application/json'
          customHeaders: '{"accept": "application/json"}'
          data: ' {"name":"Ashmita", "age":18,"role":"Software Engineer"}'
-         username: ${{env.MY_USERNAME}}
-         password: ${{env.MY_PASSWORD}}
+         username: ${{env.APIHIT_USERNAME}}
+         password: ${{env.APIHIT_PASSWORD}}
            
      - name: Show Response
        id: response
