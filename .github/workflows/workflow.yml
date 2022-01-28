@@ -126,9 +126,5 @@ jobs:
          data: ' {"name":"Ashmita", "age":18,"role":"Software Engineer"}'
          username: ${{env.APIHIT_USERNAME}}
          password: ${{env.APIHIT_PASSWORD}}
-           
-     - name: Show Response
-       id: response
-       run: |
-            response=$(echo ${{ toJSON(steps.packageDeploy.outputs.response.status) }})
-            echo $response
+         ignoreStatusCodes: '401,403,404' 
+    
