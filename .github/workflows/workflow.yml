@@ -52,7 +52,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.04", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"v1.05", "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
@@ -116,15 +116,22 @@ jobs:
    needs: deployPackage   
    steps:     
      - name: Process Execution
-       id: processExecution
-       uses: fjogeleit/http-request-action@master
-       with:
-         url: 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/'
-         method: 'POST'
-         contentType: 'application/json'
-         customHeaders: '{"accept": "application/json"}'
-         data: ' {"name":"Ashmita", "age":18,"role":"Software Engineer"}'
-         username: ${{env.APIHIT_USERNAME}}
-         password: ${{env.APIHIT_PASSWORD}}
+       run: |
+            CODE=`curl --write-out '%{http_code}' \
+            --request POST \
+            --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm' \
+            --header 'content-type: application/json' \
+            --url 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/' \
+            --data '    {
+                          "name":"Ashmita",
+                          "age":18,
+                          "role":"Software Engineer"
+                         }'`
+            if [ $CODE=="200" ] 
+            then
+               echo "The process executed successfully"
+            else
+               echo $CODE
+            fi
          
     
