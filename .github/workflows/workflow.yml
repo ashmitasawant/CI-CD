@@ -105,4 +105,30 @@ jobs:
        run: |
             response=$(echo ${{ toJSON(steps.packageDeploy.outputs.response) }})
             echo $response
-   
+  
+  
+  processExecution:
+   environment: Dev
+   env: 
+        MY_USERNAME: ${{ secrets.MY_USERNAME }}
+        MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+   runs-on: ubuntu-latest    
+   needs: deployPackage   
+   steps:     
+     - name: Process Execution
+       id: processExecution
+       uses: fjogeleit/http-request-action@master
+       with:
+         url: 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/'
+         method: 'POST'
+         contentType: 'application/json'
+         customHeaders: '{"accept": "application/json"}'
+         data: ' {"name":"Ashmita", "age":18,"role":"Software Engineer"}'
+         username: ${{env.MY_USERNAME}}
+         password: ${{env.MY_PASSWORD}}
+           
+     - name: Show Response
+       id: response
+       run: |
+            response=$(echo ${{ toJSON(steps.processExecution.outputs.response) }})
+            echo $response
