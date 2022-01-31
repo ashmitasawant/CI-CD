@@ -4,7 +4,7 @@ name: Deployment Pipeline
 on:
   push:
     paths:
-     - 'ProcessInfo/processDetails'
+     - 'ProcessInfo/ProcessDetails.json'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
