@@ -130,7 +130,5 @@ jobs:
             if [[ $CODE == *"200"* ]]
             then
                echo "The process executed successfully"
-            else
-               echo $CODE
             fi
     
