@@ -1,0 +1,17 @@
+[
+  {
+		"processName": "TestWS",
+		"componentID": "bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5",
+		"evnID": "5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259"
+	},
+	{
+		"processName": "BindTest",
+		"componentID": "19e29bca-0873-4602-ae66-f8c98a5c2203",
+		"evnID": "b3af1cf6-f33c-4539-bac5-e69073703311"
+	},
+	{
+		"processName": "QuoteTest",
+		"componentID": "a95c1b3a-34f9-44b4-8ce5-4f5e576b587e",
+		"evnID": "b3af1cf6-f33c-4539-bac5-e69073703311"
+	}
+]
