@@ -55,7 +55,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":"v1.09", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":"v1.10", "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
@@ -133,6 +133,7 @@ jobs:
             if [[ $CODE == *"200"* ]]
             then
                echo "The process executed successfully"
+               echo $CODE
             else 
                echo $CODE
             fi
