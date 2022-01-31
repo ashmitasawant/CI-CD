@@ -127,11 +127,10 @@ jobs:
                           "age":18,
                           "role":"Software Engineer"
                          }'`
-            if [ $CODE=="200" ] 
+            if [[ $CODE == *"200"* ]]
             then
                echo "The process executed successfully"
             else
                echo $CODE
             fi
-         
     
