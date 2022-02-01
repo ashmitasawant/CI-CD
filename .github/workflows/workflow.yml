@@ -16,7 +16,7 @@ jobs:
     outputs:
       output1: ${{ steps.setComponentId.outputs.componentID }}
       output2: ${{ steps.setComponentId.outputs.environmentID }}
-
+      output3: ${{ steps.setComponentId.outputs.packageVersion }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -25,10 +25,12 @@ jobs:
       - id: setComponentId
         run: |
             ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
+            packageVersion=$(echo  ${processDetails} | jq '.[] | .packageVersion')
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
             echo "::set-output name=componentID::$componentID"
             echo "::set-output name=environmentID::$environmentID"
+            echo "::set-output name=packageVersion::$packageVersion"
   
             
   createPackage:
@@ -40,7 +42,7 @@ jobs:
      
     runs-on: ubuntu-latest
     outputs:
-      output3: ${{ steps.response.outputs.packageId }}
+      output4: ${{ steps.response.outputs.packageId }}
     needs: getProcessInfo
     steps:
      - name: SetVariables
@@ -55,7 +57,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":"v1.11", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
@@ -75,8 +77,8 @@ jobs:
         - name: pushPackageIds
           id: packageId
           run: |
-               echo ${{needs.createPackage.outputs.output3}} 
-               echo ${{needs.createPackage.outputs.output3}} >> PackageIds.txt
+               echo ${{needs.createPackage.outputs.output4}} 
+               echo ${{needs.createPackage.outputs.output4}} >> PackageIds.txt
                git config user.name ashmitasawant
                git config user.email ashmitasawant3@gmail.com
                git add .
@@ -99,7 +101,7 @@ jobs:
          method: 'POST'
          contentType: 'application/json'
          customHeaders: '{"accept": "application/json"}'
-         data: '{"environmentId": ${{needs.getProcessInfo.outputs.output2}},"packageId": ${{needs.createPackage.outputs.output3}}}'
+         data: '{"environmentId": ${{needs.getProcessInfo.outputs.output2}},"packageId": ${{needs.createPackage.outputs.output4}}}'
          username: ${{env.MY_USERNAME}}
          password: ${{env.MY_PASSWORD}}
            
