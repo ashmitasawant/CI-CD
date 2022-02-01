@@ -8,12 +8,7 @@
 		},
 		{
 			"processName": "BindTest",
-			"componentID": "19e29bca-0873-4602-ae66-f8c98a5c2203",
-			"environmentID": "b3af1cf6-f33c-4539-bac5-e69073703311"
-		},
-		{
-			"processName": "QuoteTest",
-			"componentID": "a95c1b3a-34f9-44b4-8ce5-4f5e576b587e",
+			"componentID": "a7f1b658-ea28-4b36-9627-187f5d6f6446",
 			"environmentID": "b3af1cf6-f33c-4539-bac5-e69073703311"
 		}
 	]
