@@ -25,8 +25,8 @@ jobs:
       - id: setComponentId
         run: |
             ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
-            componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
-            environmentId=$(echo  ${ProcessDetails} | jq '.[0].environmentID')
+            componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
+            environmentId=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
             echo "::set-output name=componentID::$componentId"
             echo "::set-output name=environmentID::$environmentId"
   
@@ -55,7 +55,7 @@ jobs:
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":"v1.10", "notes":"Package for deployment" }'
+        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":"v1.11", "notes":"Package for deployment" }'
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}}
         
