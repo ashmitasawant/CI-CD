@@ -1,6 +1,6 @@
 [{
 
-	"packageVersion": "v1.12",
+	"packageVersion": "v1.1",
 	"processDetails": [{
 			"processName": "TestWS",
 			"componentID": "bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5",
@@ -9,7 +9,7 @@
 		{
 			"processName": "BindTest",
 			"componentID": "a7f1b658-ea28-4b36-9627-187f5d6f6446",
-			"environmentID": "b3af1cf6-f33c-4539-bac5-e69073703311"
+			"environmentID": "7cbd23ea-4870-4619-9d47-022872e61ad8"
 		}
 	]
 
