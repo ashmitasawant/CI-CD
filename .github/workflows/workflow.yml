@@ -14,18 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      output1: ${{ steps.setComponentId.outputs.componentID }}
-      output2: ${{ steps.setComponentId.outputs.environmentID }}
-      output3: ${{ steps.setComponentId.outputs.packageVersion }}
+      output1: ${{ steps.setProcessInfo.outputs.componentID }}
+      output2: ${{ steps.setProcessInfo.outputs.environmentID }}
+      output3: ${{ steps.setProcessInfo.outputs.packageVersion }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Get ComponentId
+      - name: Get Process Info
         uses: actions/checkout@v2
-      - id: setComponentId
+      - id: setProcessInfo
         run: |
             ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
-            packageVersion=$(echo  ${processDetails} | jq '.[] | .packageVersion')
+            packageVersion=$(echo  ${ProcessDetails} | jq '.[] | .packageVersion')
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
             echo "::set-output name=componentID::$componentID"
