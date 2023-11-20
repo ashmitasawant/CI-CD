@@ -5,6 +5,9 @@ on:
    
 
 jobs:
+  snapshot_extensions_workflow_call:
+     uses: ashmitasawant/CI-CD/.github/workflows/snapshot_extensions.yml@main 
+     
   get_extensions_update_details:
     runs-on: ubuntu-latest
     outputs:
