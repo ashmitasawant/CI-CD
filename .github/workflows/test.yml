@@ -70,6 +70,18 @@ jobs:
      needs: get_extensions_update_details
      if: ${{ needs.get_extensions_update_details.outputs.connections_flag == 'true' }}
      uses: ashmitasawant/CI-CD/.github/workflows/connections_test.yml@main 
+
+  call_dpps_workflow:
+     needs: get_extensions_update_details
+     if: ${{ needs.get_extensions_update_details.outputs.connections_flag == 'true' }}
+     uses: ashmitasawant/CI-CD/.github/workflows/connections_test.yml@main 
+
+  call_pps_workflow:
+     needs: get_extensions_update_details
+     if: ${{ needs.get_extensions_update_details.outputs.connections_flag == 'true' }}
+     uses: ashmitasawant/CI-CD/.github/workflows/connections_test.yml@main 
+
+
             
                  
  
