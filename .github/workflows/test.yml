@@ -17,7 +17,7 @@ jobs:
     - name: Set the array
       id: set-array-output
       run: |
-        fileToBeRead=$(ls -1 ./CI-CD/ProcessInfo/ProcessDetails.json )
+        fileToBeRead=$(ls -1 ./ProcessInfo/ProcessDetails.json )
               echo "File To be Read is:" $fileToBeRead
               arrIN=(${fileToBeRead//// })
               fileToRead=$(echo ${arrIN[4]})
