@@ -12,12 +12,12 @@ jobs:
     - id: get_extensions_snapshot
       run: |
              $accessToken="Basic Qk9PTUlfVE9LRU4ua2FydGlrLmRhc2hvcmFAbmVvc2FscGhhLmNvbTo1Y2JkNmFlYi03NzI3LTRmZmQtODEyYi02OTI3NjI3NzMyYTk="
-             get_extensions_apiCall=$(curl -s -X GET \
-                              -H "Authorization: $accessToken" \
-                              -H "Accept: application/json" \
-                              -H "Content-Type: application/json" \
-                              https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/EnvironmentExtensions/b8ece4bb-0306-45dc-8911-c31dd6e11d14) 
+             get_extensions_apiCall=`curl  --request GET \
+                               --header 'Authorization: Basic Qk9PTUlfVE9LRU4ua2FydGlrLmRhc2hvcmFAbmVvc2FscGhhLmNvbTo1Y2JkNmFlYi03NzI3LTRmZmQtODEyYi02OTI3NjI3NzMyYTk=' \
+                               --header 'accept: application/json' \
+                               --url 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/EnvironmentExtensions/b8ece4bb-0306-45dc-8911-c31dd6e11d14'`
                                
+                             
                                echo $get_extensions_apiCall 
 
   convert-json-to-table:
