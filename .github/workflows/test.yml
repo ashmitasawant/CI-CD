@@ -36,36 +36,39 @@ jobs:
               if [[ $extensionsToBeUpdateArray == *"connections"* ]]
               then
                     echo "String contains connections."
-                    connections_flag=true
+                    connections_flag="true"
               else
                     echo "String does not contain connections."
-                    connections_flag=false
+                    connections_flag="false"
               fi
               echo "connections_flag=$connections_flag" >> $GITHUB_OUTPUT
-              
+              echo $connections_flag
+               
               if [[ $extensionsToBeUpdateArray == *"dpps"* ]]
               then
                     echo "String contains dpps."
-                    dpps_flag=true
+                    dpps_flag="true"
               else
                     echo "String does not contain dpps."
-                    dpps_flag=false
+                    dpps_flag="false"
               fi
               echo "dpps_flag=$dpps_flag" >> $GITHUB_OUTPUT
+              echo $dpps_flag
 
               if [[ $extensionsToBeUpdateArray == *"pps"* ]]
               then
                     echo "String contains pps."
-                    pps_flag=true
+                    pps_flag="true"
               else
                     echo "String does not contain pps."
-                    pps_flag=false
+                    pps_flag="false"
               fi
               echo "pps_flag=$pps_flag" >> $GITHUB_OUTPUT
+              echo $pps_flag
 
   call_connections_workflow:
      needs: get_extensions_update_details
-     if: ${{ needs.get_extensions_update_details.outputs.connections_flag == true }}
+     if: ${{ needs.get_extensions_update_details.outputs.connections_flag == 'true' }}
      uses: ashmitasawant/CI-CD/.github/workflows/connections_test.yml@main 
             
                  
