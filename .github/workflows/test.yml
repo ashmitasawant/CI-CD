@@ -23,7 +23,7 @@ jobs:
               fileToRead=$(echo ${arrIN[4]})
               echo $fileToRead
               echo "::set-output name=fileToRead::$fileToRead"
-              fileRead=$(cat ./boomi/DeploymentConfiguration/ProcessDeploymentConfiguration/"$fileToRead")
+              fileRead=$(cat .//ProcessInfo/ProcessDetails.json)
               echo "File Data:"$fileRead
               extensionsToBeUpdate=$(echo  ${fileRead} | jq '.[] | .extensionsToUpdate[0:5]' | sed 's/[],[]//g' )
               a=$(echo $extensionsToBeUpdate)
