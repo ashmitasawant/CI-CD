@@ -1,9 +1,7 @@
 name: Convert JSON to Table
 
 on:
-  push:
-    branches:
-      - main
+   workflow_call:
 
 jobs:
   convert-json-to-table:
