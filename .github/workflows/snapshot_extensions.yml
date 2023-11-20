@@ -11,7 +11,6 @@ jobs:
       uses: actions/checkout@v2
     - id: get_extensions_snapshot
       run: |
-             $accessToken="Basic Qk9PTUlfVE9LRU4ua2FydGlrLmRhc2hvcmFAbmVvc2FscGhhLmNvbTo1Y2JkNmFlYi03NzI3LTRmZmQtODEyYi02OTI3NjI3NzMyYTk="
              get_extensions_apiCall=`curl  --request GET \
                                --header 'Authorization: Basic Qk9PTUlfVE9LRU4ua2FydGlrLmRhc2hvcmFAbmVvc2FscGhhLmNvbTo1Y2JkNmFlYi03NzI3LTRmZmQtODEyYi02OTI3NjI3NzMyYTk=' \
                                --header 'accept: application/json' \
