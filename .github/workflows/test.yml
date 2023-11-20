@@ -1,0 +1,61 @@
+name: Pass Array Between Jobs
+
+on:
+  push:
+   
+
+jobs:
+  define-array:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.set-array-output.outputs.array }}
+
+    steps:
+    - name: Set up Git repository
+      uses: actions/checkout@v2
+
+    - name: Set the array
+      id: set-array-output
+      run: |
+        fileToBeRead=$(ls -1 ./boomi/DeploymentConfiguration/ProcessDeploymentConfiguration/*.json )
+              echo "File To be Read is:" $fileToBeRead
+              arrIN=(${fileToBeRead//// })
+              fileToRead=$(echo ${arrIN[4]})
+              echo $fileToRead
+              echo "::set-output name=fileToRead::$fileToRead"
+              fileRead=$(cat ./boomi/DeploymentConfiguration/ProcessDeploymentConfiguration/"$fileToRead")
+              echo "File Data:"$fileRead
+              extensionsToBeUpdate=$(echo  ${fileRead} | jq '.[] | .extensionsToUpdate[0:5]' | sed 's/[],[]//g' )
+              a=$(echo $extensionsToBeUpdate)
+              echo $a
+              echo "extensionsToBeUpdate is:" $extensionsToBeUpdate
+              
+              for element in "${a[@]}";
+              do 
+                  echo $element
+                  extensionsToBeUpdateArray+="$element"
+              done
+              if [[ $element == *"dpps"* ]]
+              then
+                    echo "String contains connections."
+              else
+                    echo "String does not contain connections."
+              fi
+              echo "::set-output name=array::$extensionsToBeUpdateArray"
+              
+                 
+  use-array:
+    needs: define-array
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get the array from the first job
+      run: |
+        steps_output=(${{ needs.define-array.outputs.output1 }})
+        echo "Received Array:" $steps_output
+         if [[ $steps_output == *"dpps"* ]]
+              then
+                    echo "String contains connections."
+              else
+                    echo "String does not contain connections."
+              fi
