@@ -4,6 +4,22 @@ on:
    workflow_call:
 
 jobs:
+  get_snapshot_of_extensions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - id: get_extensions_snapshot
+      run: |
+             get_extensions_apiCall=$(curl -s -X GET \
+                              -H "Authorization: Basic Qk9PTUlfVE9LRU4ua2FydGlrLmRhc2hvcmFAbmVvc2FscGhhLmNvbTo1Y2JkNmFlYi03NzI3LTRmZmQtODEyYi02OTI3NjI3NzMyYTk=" \
+                              -H "Accept: application/json" \
+                              -H "Content-Type: application/json" \
+                              
+                              https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/EnvironmentExtensions/b8ece4bb-0306-45dc-8911-c31dd6e11d14) 
+                               
+                               echo $get_extensions_apiCall 
+
   convert-json-to-table:
     runs-on: ubuntu-latest
 
