@@ -1,17 +1,23 @@
-[{
-
-	"packageVersion": "v1.20",
-	"processDetails": [{
-			"processName": "TestWS",
-			"componentID": "bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5",
-			"environmentID": "5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259"
-		},
-		{
-			"processName": "BindTest",
-			"componentID": "a7f1b658-ea28-4b36-9627-187f5d6f6446",
-			"environmentID": "bad76642-bf60-4de0-8a54-79931e3bcd8e"
-		}
-	]
-
-}]
-
+[
+	{
+		"environmentName": "Test",
+		"postmanCollection": "AUTHORIZATION.postman_collection.json",
+		"projectName": "Authorization",
+		"extensionUpdate": true,
+		"extensionsToUpdate": [
+			"connections",
+			"dpps"
+		],
+		"processDetails": [
+			{
+				"processName": "*TEST PROCESS*",
+				"componentID": "af9b763b-073e-4102-a5cf-9b1fd351f2c8",
+				"packageVersion": "Test-v1.0",
+				"packageId": "",
+				"packageNote": "Test Purpose Deployment",
+				"mode": "deploy",
+				"deploymentID": ""
+			}
+		]
+	}
+]
