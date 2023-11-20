@@ -17,13 +17,13 @@ jobs:
     - name: Set the array
       id: set-array-output
       run: |
-        fileToBeRead=$(ls -1 ./ProcessInfo/ProcessDetails.json )
+        fileToBeRead=$(ls -1 ./ProcessInfo/ProcessDetails.TestProcess.test.json )
               echo "File To be Read is:" $fileToBeRead
               arrIN=(${fileToBeRead//// })
               fileToRead=$(echo ${arrIN[4]})
               echo $fileToRead
               echo "::set-output name=fileToRead::$fileToRead"
-              fileRead=$(cat .//ProcessInfo/ProcessDetails.json)
+              fileRead=$(cat ./ProcessInfo/ProcessDetails.TestProcess.test.json)
               echo "File Data:"$fileRead
               extensionsToBeUpdate=$(echo  ${fileRead} | jq '.[] | .extensionsToUpdate[0:5]' | sed 's/[],[]//g' )
               a=$(echo $extensionsToBeUpdate)
