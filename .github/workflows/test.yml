@@ -5,10 +5,12 @@ on:
    
 
 jobs:
-  define-array:
+  get_extensions_update_details:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.set-array-output.outputs.array }}
+      connections_flag: ${{ steps.set-array-output.outputs.connections_flag }}
+      dpps_flag: ${{ steps.set-array-output.outputs.dpps_flag }}
+      pps_flag: ${{ steps.set-array-output.outputs.pps_flag }}
 
     steps:
     - name: Set up Git repository
@@ -39,6 +41,8 @@ jobs:
                     echo "String does not contain connections."
                     connections_flag=false
               fi
+              echo "connections_flag=$connections_flag" >> $GITHUB_OUTPUT
+              
               if [[ $extensionsToBeUpdateArray == *"dpps"* ]]
               then
                     echo "String contains dpps."
@@ -47,6 +51,8 @@ jobs:
                     echo "String does not contain dpps."
                     dpps_flag=false
               fi
+              echo "dpps_flag=$dpps_flag" >> $GITHUB_OUTPUT
+
               if [[ $extensionsToBeUpdateArray == *"pps"* ]]
               then
                     echo "String contains pps."
@@ -55,6 +61,12 @@ jobs:
                     echo "String does not contain pps."
                     pps_flag=false
               fi
-              
+              echo "pps_flag=$pps_flag" >> $GITHUB_OUTPUT
+
+  call_connections_workflow:
+     needs: get_extensions_update_details
+     if: ${{ needs.get_extensions_update_details.outputs.connections_flag == true }}
+     uses: ashmitasawant/CI-CD/.github/workflows/connections_test.yml@main 
+            
                  
  
