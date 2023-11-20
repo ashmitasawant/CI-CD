@@ -26,36 +26,35 @@ jobs:
               fileRead=$(cat ./ProcessInfo/ProcessDetails.TestProcess.test.json)
               echo "File Data:"$fileRead
               extensionsToBeUpdate=$(echo  ${fileRead} | jq '.[] | .extensionsToUpdate[0:5]' | sed 's/[],[]//g' )
-              a=$(echo $extensionsToBeUpdate)
-              echo $a
-              echo "extensionsToBeUpdate is:" $extensionsToBeUpdate
+              extensionsToBeUpdateArray=$(echo $extensionsToBeUpdate)
+              echo $extensionsToBeUpdateArray
               
-              for element in "${a[@]}";
-              do 
-                  echo $element
-                  extensionsToBeUpdateArray+="$element"
-              done
-              if [[ $element == *"dpps"* ]]
+              
+              
+              if [[ $extensionsToBeUpdateArray == *"connections"* ]]
               then
                     echo "String contains connections."
+                    connections_flag=true
               else
                     echo "String does not contain connections."
+                    connections_flag=false
               fi
-              echo "::set-output name=array::$extensionsToBeUpdateArray"
+              if [[ $extensionsToBeUpdateArray == *"dpps"* ]]
+              then
+                    echo "String contains dpps."
+                    dpps_flag=true
+              else
+                    echo "String does not contain dpps."
+                    dpps_flag=false
+              fi
+              if [[ $extensionsToBeUpdateArray == *"pps"* ]]
+              then
+                    echo "String contains pps."
+                    pps_flag=true
+              else
+                    echo "String does not contain pps."
+                    pps_flag=false
+              fi
               
                  
-  use-array:
-    needs: define-array
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Get the array from the first job
-      run: |
-        steps_output=(${{ needs.define-array.outputs.output1 }})
-        echo "Received Array:" $steps_output
-         if [[ $steps_output == *"dpps"* ]]
-              then
-                    echo "String contains connections."
-              else
-                    echo "String does not contain connections."
-              fi
+ 
