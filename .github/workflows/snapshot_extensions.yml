@@ -5,6 +5,7 @@ on:
 
 jobs:
   get_snapshot_of_extensions:
+   
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -18,8 +19,12 @@ jobs:
                                
                              
                                echo $get_extensions_apiCall 
+                               echo "extensions_json=$get_extensions_apiCall" >>  $GITHUB_ENV
 
+
+                               
   convert-json-to-table:
+   
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +41,7 @@ jobs:
         python -m pip install --upgrade pip
        
     - name: Convert JSON to Table
-      run: python convert_json_to_table.py
+      run: python convert_json_to_table.py 
 
     - name: Commit and push changes
       run: |
