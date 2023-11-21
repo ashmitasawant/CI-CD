@@ -3,7 +3,7 @@ import json
 import csv
 
 json_data = os.environ.get("extensions_json")
-echo "JSON Is:" $json_data
+print ($json_data)
 data = json.loads(json_data)
 
 # Extract relevant data from the JSON
