@@ -20,7 +20,7 @@ jobs:
                                
                              
                                echo $get_extensions_apiCalls
-                               a="""{
+                               a="{
                                     	"@type": "EnvironmentExtensions",
                                     	"connections": {
                                     		"@type": "Connections",
@@ -69,7 +69,7 @@ jobs:
                                     	"environmentId": "b8ece4bb-0306-45dc-8911-c31dd6e11d14",
                                     	"extensionGroupId": "",
                                     	"id": "b8ece4bb-0306-45dc-8911-c31dd6e11d14"
-                                    }"""
+                                    }"
                                echo "get_extensions_apiCall=$a" >> $GITHUB_OUTPUT
 
   convert_json_to_table:
