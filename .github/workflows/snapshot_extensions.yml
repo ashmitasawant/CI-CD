@@ -19,7 +19,7 @@ jobs:
                                
                              
                                echo $get_extensions_apiCall 
-                               echo echo "::set-env name=get_extensions_apiCall::$($get_extensions_apiCall)"
+                               echo echo "::set-env name=get_extensions_apiCall::$get_extensions_apiCall"
 
 
                               
