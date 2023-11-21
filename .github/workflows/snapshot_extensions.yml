@@ -21,7 +21,7 @@ jobs:
                              
                                echo $get_extensions_apiCalls
                                a="true"
-                               echo echo "get_extensions_apiCall=$a" >> $GITHUB_OUTPUT
+                               echo "get_extensions_apiCall=$a" >> $GITHUB_OUTPUT
 
   convert_json_to_table:
     needs: get_snapshot_of_extensions
