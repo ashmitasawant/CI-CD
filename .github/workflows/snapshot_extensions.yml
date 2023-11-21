@@ -5,7 +5,8 @@ on:
 
 jobs:
   get_snapshot_of_extensions:
-   
+    outputs: 
+      get_extensions_apiCall: ${{ steps.get_extensions_snapshot.outputs.get_extensions_apiCall }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -19,9 +20,12 @@ jobs:
                                
                              
                                echo $get_extensions_apiCall 
-                               echo echo "::set-env name=get_extensions_apiCall::$get_extensions_apiCall"
+                               echo echo "get_extensions_apiCall=$get_extensions_apiCall" >> $GITHUB_OUTPUT
 
-
+  convert_json_to_table:
+    needs: get_snapshot_of_extensions
+    runs-on: ubuntu-latest
+    steps:
                               
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -36,7 +40,9 @@ jobs:
         python -m pip install --upgrade pip
        
     - name: Convert JSON to Table
-      run: python convert_json_to_table.py "${{ env.get_extensions_apiCall }}"
+      run: |
+            echo ${{ needs.get_snapshot_of_extensions.outputs.get_extensions_apiCall }}
+            python convert_json_to_table.py "${{ needs.get_snapshot_of_extensions.outputs.get_extensions_apiCall }}"
 
     - name: Commit and push changes
       run: |
