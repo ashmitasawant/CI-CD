@@ -20,13 +20,13 @@ jobs:
                                
                              
                                echo $get_extensions_apiCalls
-             a="""{
+             a='''{
                   	"policySubmission": [
                   		{
                   			"placingBasis": "Insurance"
                   		}
                    ]
-                  }"""
+                  }'''
              echo $a
              echo "get_extensions_apiCall=($a)" >> $GITHUB_OUTPUT
 
