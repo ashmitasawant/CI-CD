@@ -19,8 +19,9 @@ jobs:
                                --url 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/EnvironmentExtensions/b8ece4bb-0306-45dc-8911-c31dd6e11d14'`
                                
                              
-                               echo $get_extensions_apiCalls="true"
-                               echo echo "get_extensions_apiCall=$get_extensions_apiCalls" >> $GITHUB_OUTPUT
+                               echo $get_extensions_apiCalls
+                               a="true"
+                               echo echo "get_extensions_apiCall=$a" >> $GITHUB_OUTPUT
 
   convert_json_to_table:
     needs: get_snapshot_of_extensions
