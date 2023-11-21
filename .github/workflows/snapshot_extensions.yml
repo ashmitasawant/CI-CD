@@ -22,12 +22,7 @@ jobs:
                                echo echo "::set-env name=get_extensions_apiCall::$($get_extensions_apiCall)"
 
 
-                               
-  convert-json-to-table:
-   
-    runs-on: ubuntu-latest
-
-    steps:
+                              
     - name: Checkout repository
       uses: actions/checkout@v2
 
