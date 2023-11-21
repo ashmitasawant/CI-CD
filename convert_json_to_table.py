@@ -1,58 +1,8 @@
+import os
 import json
 import csv
 
-json_data = """
-{
-	"@type": "EnvironmentExtensions",
-	"connections": {
-		"@type": "Connections",
-		"connection": [
-			{
-				"@type": "Connection",
-				"field": [
-					{
-						"@type": "Field",
-						"id": "authType",
-						"encryptedValueSet": false,
-						"usesEncryption": false,
-						"componentOverride": false,
-						"useDefault": true
-					},
-					{
-						"@type": "Field",
-						"id": "oauthOptions/OAuth2Config/credentials/@clientId",
-						"encryptedValueSet": false,
-						"usesEncryption": false,
-						"componentOverride": false,
-						"useDefault": true
-					},
-					{
-						"@type": "Field",
-						"id": "oauthOptions/OAuth2Config/credentials/@clientSecret",
-						"encryptedValueSet": false,
-						"usesEncryption": false,
-						"componentOverride": false,
-						"useDefault": true
-					},
-					{
-						"@type": "Field",
-						"id": "oauthOptions/OAuth2Config/credentials/@accessToken",
-						"encryptedValueSet": false,
-						"usesEncryption": true,
-						"componentOverride": false,
-						"useDefault": true
-					}
-				],
-				"id": "4d3f80eb-5a5e-421e-b596-c5a56e739607",
-				"name": "Boomi_Service_Slack_Connector"
-			}
-		]
-	},
-	"environmentId": "b8ece4bb-0306-45dc-8911-c31dd6e11d14",
-	"extensionGroupId": "",
-	"id": "b8ece4bb-0306-45dc-8911-c31dd6e11d14"
-}
-"""
+json_data = os.getenv('GITHUB_ENV')
 
 data = json.loads(json_data)
 
