@@ -15,6 +15,9 @@ if response.status_code == 200:
     # Parse the JSON response
     file_info = response.json()
 
+    file_content_base64 = file_info['content']
+    file_content_bytes = base64.b64decode(file_content_base64)
+    file_content = file_content_bytes.decode('utf-8')
 
     # Now, 'file_content' contains the content of the file
     print("Content of SnapshotInitial.json:")
