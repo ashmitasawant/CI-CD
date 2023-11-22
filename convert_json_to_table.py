@@ -10,6 +10,9 @@ def download_json(url):
 def json_to_csv(json_data, csv_file):
     # data = json.loads(str(json_data))
     data = json_data
+    print(type(data))
+    print("*"*100)
+    print(data)
 # Extract relevant data from the JSON
     connection = data["connections"]["connection"][0]
     fields = connection["field"]
