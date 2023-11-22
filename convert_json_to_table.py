@@ -5,6 +5,9 @@ import csv,os
 def download_json(url):
     response = requests.get(url)
     response.raise_for_status()  # Check for errors
+    
+    with open(demo.json,"w") as f:
+        f.write(str(response.json()))
     return response.json()
 
 def json_to_csv(json_data, csv_file):
