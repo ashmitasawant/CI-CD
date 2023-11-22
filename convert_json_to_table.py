@@ -10,11 +10,11 @@ def download_json(url):
 
 def json_to_csv(json_data, csv_file):
     # data = json.loads(str(json_data))
-    data = json_data
+    # data = json_data
     
 # Extract relevant data from the JSON
-    connection = data["connections"]["connection"][0]
-    fields = connection["field"]
+    # connection = data["connections"]["connection"][0]
+    # fields = connection["field"]
     if isinstance(json_data, list):
         keys = json_data[0].keys() if json_data else []
     elif isinstance(json_data, dict):
