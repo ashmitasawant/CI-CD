@@ -2,7 +2,7 @@ import os
 import json
 import csv
 
-json_data = $(cat ./ProcessInfo/SnapshotInitial.json)
+json_data = open("ProcessInfo/SnapshotInitial.json", "r")
 print (json_data)
 data = json.loads(json_data)
 
