@@ -30,6 +30,7 @@ if __name__ == "__main__":
     
     # Replace 'output.csv' with your desired CSV file name
     csv_file_path = 'output.csv'
+    print(os.getcwd())
 
     # Download JSON from the URL
 
