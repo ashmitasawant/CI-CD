@@ -11,17 +11,17 @@ api_url = 'https://github.com/ashmitasawant/CI-CD/blob/main/ProcessInfo/Snapshot
 response = requests.get(api_url)
 
 # Check if the request was successful (status code 200)
-if response.status_code == 200:
-    # Parse the JSON response
-    file_info = response.json()
+print (response)
+data = json.loads(response)
 
-    file_content_base64 = file_info['content']
-    file_content_bytes = base64.b64decode(file_content_base64)
-    file_content = file_content_bytes.decode('utf-8')
+# Extract relevant data from the JSON
+connection = data["connections"]["connection"][0]
+fields = connection["field"]
 
-    # Now, 'file_content' contains the content of the file
-    print("Content of SnapshotInitial.json:")
-    print(file_content)
-else:
-    print(f"Failed to fetch file. Status code: {response.status_code}")
-    print(response.text)
+# Create a CSV file and write the tabular data
+with open("table.csv", mode="w", newline="") as csvfile:
+    csv_writer = csv.writer(csvfile)
+    csv_writer.writerow(["Field ID", "Encrypted Value Set", "Uses Encryption", "Component Override", "Use Default"])
+
+    for field in fields:
+        csv_writer.writerow([field["id"], field["encryptedValueSet"], field["usesEncryption"], field["componentOverride"], field["useDefault"]])
