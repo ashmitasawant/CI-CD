@@ -2,7 +2,7 @@ import os
 import json
 import csv
 
-file_path = 'CI-CD/ProcessInfo/SnapshotInitial.json'
+file_path = '/ProcessInfo/SnapshotInitial.json'
 
 # Check if the file exists
 if os.path.exists(file_path):
