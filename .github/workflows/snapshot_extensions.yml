@@ -20,7 +20,7 @@ jobs:
                                
                              
                                echo $get_extensions_apiCall 
-                              echo $get_extensions_apiCall, >> /ProcessInfo/SnapshotInitial.json
+                              echo $get_extensions_apiCall, >> ProcessInfo/SnapshotInitial.json
                                             git config user.name ashmitasawant
                                             git config user.email ashmitasawant3@gmail.com
                                             git add .
