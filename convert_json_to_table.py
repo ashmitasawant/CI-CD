@@ -8,7 +8,7 @@ def download_json(url):
     return response.json()
 
 def json_to_csv(json_data, csv_file):
-    data = json.loads(json_data)
+    data = json.loads(str(json_data))
 
 # Extract relevant data from the JSON
     connection = data["connections"]["connection"][0]
