@@ -2,14 +2,23 @@ import os
 import json
 import csv
 
-file_path = '/ProcessInfo/SnapshotInitial.json'
+api_url = 'https://github.com/ashmitasawant/CI-CD/blob/main/ProcessInfo/SnapshotInitial.json'
 
-# Check if the file exists
-if os.path.exists(file_path):
-    with open(file_path, 'r') as file:
-        # Read the content of the file
-        json_content = json.load(file)
-        print("Content of SnapshotInitial.json:")
-        print(json.dumps(json_content, indent=2))  # Display formatted JSON content
+response = requests.get(api_url)
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Parse the JSON response
+    file_info = response.json()
+
+    # Decode the content from base64
+    file_content_base64 = file_info['content']
+    file_content_bytes = base64.b64decode(file_content_base64)
+    file_content = file_content_bytes.decode('utf-8')
+
+    # Now, 'file_content' contains the content of the file
+    print("Content of SnapshotInitial.json:")
+    print(file_content)
 else:
-    print(f"The file {file_path} does not exist.")
+    print(f"Failed to fetch file. Status code: {response.status_code}")
+    print(response.text)
