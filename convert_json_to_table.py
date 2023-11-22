@@ -1,7 +1,7 @@
 import requests
 from base64 import b64decode
 
-def file_content(owner, repo, path, branch='main'):
+def file_content():
     url = f'https://github.com/ashmitasawant/CI-CD/blob/main/ProcessInfo/SnapshotInitial.json'
     response = requests.get(url)
 
