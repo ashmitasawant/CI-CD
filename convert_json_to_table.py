@@ -2,7 +2,7 @@ import os
 import json
 import csv
 
-json_data = os.environ.get("get_extensions_apiCall")
+json_data = $(cat ./ProcessInfo/SnapshotInitial.json)
 print (json_data)
 data = json.loads(json_data)
 
