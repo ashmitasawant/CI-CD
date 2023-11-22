@@ -1,6 +1,6 @@
 import requests
 import json
-import csv
+import csv,os
 
 def download_json(url):
     response = requests.get(url)
