@@ -9,14 +9,27 @@ import csv
 api_url = 'https://github.com/ashmitasawant/CI-CD/blob/main/ProcessInfo/SnapshotInitial.json'
 
 response = requests.get(api_url)
-json_string=json.dumps(response)
+
 # Check if the request was successful (status code 200)
 print (response)
-data = json.loads(json_string)
+data = json.loads(response)
 
 # Extract relevant data from the JSON
 connection = data["connections"]["connection"][0]
 fields = connection["field"]
+def json_to_csv(json_file, csv_file):
+    with open(json_file, 'r') as json_input:
+        data = json.load(json_input)
+
+    # Assuming the JSON is a list of dictionaries
+    if isinstance(data, list):
+        keys = data[0].keys() if data else []
+    # Assuming the JSON is a single dictionary
+    elif isinstance(data, dict):
+        keys = data.keys()
+    else:
+        raise ValueError("Invalid JSON format")
+
 
 # Create a CSV file and write the tabular data
 with open("table.csv", mode="w", newline="") as csvfile:
