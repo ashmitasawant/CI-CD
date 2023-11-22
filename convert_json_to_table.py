@@ -4,7 +4,11 @@ import csv
 
 def download_json(url):
     response = requests.get(url)
-    response.raise_for_status()  # Check for errors
+    response.raise_for_status() 
+    # Check for errors
+    print(response.json())
+    print("*"*100)
+    print(response.text)
     return response.json()
 
 def json_to_csv(json_data, csv_file):
