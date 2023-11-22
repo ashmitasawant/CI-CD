@@ -65,3 +65,8 @@ jobs:
     #     git add output.csv
     #     git commit -m "Update CSV file"
     #     git push
+    - name: Upload CSV as Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: converted-csv
+        path: example.csv
