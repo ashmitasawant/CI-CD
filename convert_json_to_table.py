@@ -6,35 +6,30 @@ def download_json(url):
     response = requests.get(url)
     response.raise_for_status() 
     # Check for errors
-    print(response.json())
-    print("*"*100)
-    print(response.text)
-    return response.json().get('content')
+    return response.json()
 
 def json_to_csv(json_data, csv_file):
     # data = json.loads(str(json_data))
     data = json_data
-    print(type(data))
-    print("*"*100)
-    print(data)
+    
 # Extract relevant data from the JSON
     connection = data["connections"]["connection"][0]
     fields = connection["field"]
-    # if isinstance(json_data, list):
-    #     keys = json_data[0].keys() if json_data else []
-    # elif isinstance(json_data, dict):
-    #     keys = json_data.keys()
-    # else:
-    #     raise ValueError("Invalid JSON format")
+    if isinstance(json_data, list):
+        keys = json_data[0].keys() if json_data else []
+    elif isinstance(json_data, dict):
+        keys = json_data.keys()
+    else:
+        raise ValueError("Invalid JSON format")
 
-    # with open(csv_file, 'w', newline='') as csv_output:
-    #     writer = csv.DictWriter(csv_output, fieldnames=keys)
-    #     writer.writeheader()
+    with open(csv_file, 'w', newline='') as csv_output:
+        writer = csv.DictWriter(csv_output, fieldnames=keys)
+        writer.writeheader()
 
-    #     if isinstance(json_data, list):
-    #         writer.writerows(json_data)
-    #     elif isinstance(json_data, dict):
-    #         writer.writerow(json_data)
+        if isinstance(json_data, list):
+            writer.writerows(json_data)
+        elif isinstance(json_data, dict):
+            writer.writerow(json_data)
 
     # Create a CSV file and write the tabular data
     with open(csv_file, mode="w", newline="") as csvfile:
