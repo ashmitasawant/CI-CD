@@ -9,10 +9,10 @@ import csv
 api_url = 'https://github.com/ashmitasawant/CI-CD/blob/main/ProcessInfo/SnapshotInitial.json'
 
 response = requests.get(api_url)
-
+json_string=json.dumps(response)
 # Check if the request was successful (status code 200)
 print (response)
-data = json.loads(response)
+data = json.loads(json_string)
 
 # Extract relevant data from the JSON
 connection = data["connections"]["connection"][0]
