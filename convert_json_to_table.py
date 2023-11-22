@@ -2,18 +2,14 @@ import os
 import json
 import csv
 
-json_data = open("ProcessInfo/SnapshotInitial.json", "r")
-print (json_data)
-data = json.loads(json_data)
+file_path = 'CI-CD/ProcessInfo/SnapshotInitial.json'
 
-# Extract relevant data from the JSON
-connection = data["connections"]["connection"][0]
-fields = connection["field"]
-
-# Create a CSV file and write the tabular data
-with open("table.csv", mode="w", newline="") as csvfile:
-    csv_writer = csv.writer(csvfile)
-    csv_writer.writerow(["Field ID", "Encrypted Value Set", "Uses Encryption", "Component Override", "Use Default"])
-
-    for field in fields:
-        csv_writer.writerow([field["id"], field["encryptedValueSet"], field["usesEncryption"], field["componentOverride"], field["useDefault"]])
+# Check if the file exists
+if os.path.exists(file_path):
+    with open(file_path, 'r') as file:
+        # Read the content of the file
+        json_content = json.load(file)
+        print("Content of SnapshotInitial.json:")
+        print(json.dumps(json_content, indent=2))  # Display formatted JSON content
+else:
+    print(f"The file {file_path} does not exist.")
