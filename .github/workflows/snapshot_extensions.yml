@@ -50,10 +50,10 @@ jobs:
             echo ${{ needs.get_snapshot_of_extensions.outputs.get_extensions_apiCall }}
             python convert_json_to_table.py 
 
-    - name: Commit and push changes
-      run: |
-        git config user.name "${{ github.actor }}"
-        git config user.email "${{ github.actor }}@users.noreply.github.com"
-        git add .
-        git commit -m "Convert JSON to Table"
-        git push
+    # - name: Commit and push changes
+    #   run: |
+    #     git config user.name "${{ github.actor }}"
+    #     git config user.email "${{ github.actor }}@users.noreply.github.com"
+    #     git add .
+    #     git commit -m "Convert JSON to Table"
+    #     git push
