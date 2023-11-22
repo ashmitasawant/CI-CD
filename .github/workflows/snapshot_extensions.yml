@@ -58,10 +58,10 @@ jobs:
     #     git commit -m "Convert JSON to Table"
     #     git push
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.email "ashmitasawant3@gmail.com"
-        git config --global user.name "ashmitasawant"
-        git add output.csv
-        git commit -m "Update CSV file"
-        git push
+    # - name: Commit and push changes
+    #   run: |
+    #     git config --global user.email "ashmitasawant3@gmail.com"
+    #     git config --global user.name "ashmitasawant"
+    #     git add output.csv
+    #     git commit -m "Update CSV file"
+    #     git push
