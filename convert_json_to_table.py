@@ -36,8 +36,8 @@ def json_to_csv(json_data, csv_file):
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(["Field ID", "Encrypted Value Set", "Uses Encryption", "Component Override", "Use Default"])
     
-        for field in fields:
-            csv_writer.writerow([field["id"], field["encryptedValueSet"], field["usesEncryption"], field["componentOverride"], field["useDefault"]])
+        # for field in fields:
+        #     csv_writer.writerow([field["id"], field["encryptedValueSet"], field["usesEncryption"], field["componentOverride"], field["useDefault"]])
 
 
 if __name__ == "__main__":
