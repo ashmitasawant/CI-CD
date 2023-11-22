@@ -8,12 +8,17 @@ def download_json(url):
     return response.json()
 
 def json_to_csv(json_data, csv_file):
-    if isinstance(json_data, list):
-        keys = json_data[0].keys() if json_data else []
-    elif isinstance(json_data, dict):
-        keys = json_data.keys()
-    else:
-        raise ValueError("Invalid JSON format")
+    data = json.loads(json_data)
+
+# Extract relevant data from the JSON
+    connection = data["connections"]["connection"][0]
+    fields = connection["field"]
+    # if isinstance(json_data, list):
+    #     keys = json_data[0].keys() if json_data else []
+    # elif isinstance(json_data, dict):
+    #     keys = json_data.keys()
+    # else:
+    #     raise ValueError("Invalid JSON format")
 
     # with open(csv_file, 'w', newline='') as csv_output:
     #     writer = csv.DictWriter(csv_output, fieldnames=keys)
