@@ -12,7 +12,7 @@ response = requests.get(api_url)
 
 # Check if the request was successful (status code 200)
 print (response)
-data = json.loads(response)
+data = json.loads(response.read())
 
 # Extract relevant data from the JSON
 connection = data["connections"]["connection"][0]
