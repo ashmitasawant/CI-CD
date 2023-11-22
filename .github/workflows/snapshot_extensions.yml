@@ -19,8 +19,9 @@ jobs:
                                --url 'https://api.boomi.com/api/rest/v1/neosalpha-SSL1AK/EnvironmentExtensions/b8ece4bb-0306-45dc-8911-c31dd6e11d14'`
                                
                              
-                               echo $get_extensions_apiCall
-             
+                               echo $get_extensions_apiCall 
+                               get_extensions_apiCall=$get_extensions_apiCall | gzip -c 
+                               echo "Compressed JSON Value is:" $get_extensions_apiCall 
              echo "get_extensions_apiCall=$get_extensions_apiCall" >> $GITHUB_OUTPUT
 
   convert_json_to_table:
