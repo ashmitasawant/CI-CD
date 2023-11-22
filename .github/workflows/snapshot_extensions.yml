@@ -20,9 +20,12 @@ jobs:
                                
                              
                                echo $get_extensions_apiCall 
-                               get_extensions_apiCall=$get_extensions_apiCall | gzip -c 
-                               echo "Compressed JSON Value is:" $get_extensions_apiCall 
-             echo "get_extensions_apiCall=$get_extensions_apiCall" >> $GITHUB_OUTPUT
+                              echo $get_extensions_apiCall, >> /ProcessInfo/SnapshotInitial.json
+                                            git config user.name ashmitasawant
+                                            git config user.email ashmitasawant3@gmail.com
+                                            git add .
+                                            git commit -m "Published Changes"
+                                            git push --force origin main   
 
   convert_json_to_table:
     needs: get_snapshot_of_extensions
@@ -44,7 +47,7 @@ jobs:
     - name: Convert JSON to Table
       run: |
             echo ${{ needs.get_snapshot_of_extensions.outputs.get_extensions_apiCall }}
-            python convert_json_to_table.py "${{ needs.get_snapshot_of_extensions.outputs.get_extensions_apiCall }}"
+            python convert_json_to_table.py 
 
     - name: Commit and push changes
       run: |
