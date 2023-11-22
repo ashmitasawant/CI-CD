@@ -27,3 +27,4 @@ json_file_path = Path(__file__).parent / 'ProcessInfo/SnapshotInitial.json'
 #json_file_path = '/ProcessInfo/SnapshotInitial.json'
 csv_file_path = 'output.csv'
 json_to_csv(json_file_path, csv_file_path)
+
